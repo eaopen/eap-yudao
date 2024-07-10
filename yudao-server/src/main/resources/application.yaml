@@ -176,7 +176,7 @@ yudao:
     license: MIT
     license-url: https://gitee.com/zhijiantianya/ruoyi-vue-pro/blob/master/LICENSE
   captcha:
-    enable: true # 验证码的开关，默认为 true
+    enable: ${captcha_enable:true} # 验证码的开关，默认为 true
   codegen:
     base-package: ${yudao.info.base-package}
     db-schemas: ${spring.datasource.dynamic.datasource.master.name}
