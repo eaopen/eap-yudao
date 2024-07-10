@@ -199,6 +199,7 @@ yudao:
       - system_dict_data
       - system_dict_type
       - system_error_code
+      - system_module
       - system_menu
       - system_sms_channel
       - system_sms_template
