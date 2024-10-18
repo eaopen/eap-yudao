@@ -3,7 +3,7 @@ package cn.iocoder.yudao.module.promotion.controller.app.seckill;
 import cn.iocoder.yudao.framework.common.enums.CommonStatusEnum;
 import cn.iocoder.yudao.framework.common.pojo.CommonResult;
 import cn.iocoder.yudao.module.promotion.controller.app.seckill.vo.config.AppSeckillConfigRespVO;
-import cn.iocoder.yudao.module.promotion.convert.seckill.seckillconfig.SeckillConfigConvert;
+import cn.iocoder.yudao.module.promotion.convert.seckill.SeckillConfigConvert;
 import cn.iocoder.yudao.module.promotion.dal.dataobject.seckill.SeckillConfigDO;
 import cn.iocoder.yudao.module.promotion.service.seckill.SeckillConfigService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 import java.util.List;
 
 import static cn.iocoder.yudao.framework.common.pojo.CommonResult.success;
@@ -28,6 +29,7 @@ public class AppSeckillConfigController {
 
     @GetMapping("/list")
     @Operation(summary = "获得秒杀时间段列表")
+    @PermitAll
     public CommonResult<List<AppSeckillConfigRespVO>> getSeckillConfigList() {
         List<SeckillConfigDO> list = configService.getSeckillConfigListByStatus(CommonStatusEnum.ENABLE.getStatus());
         return success(SeckillConfigConvert.INSTANCE.convertList2(list));

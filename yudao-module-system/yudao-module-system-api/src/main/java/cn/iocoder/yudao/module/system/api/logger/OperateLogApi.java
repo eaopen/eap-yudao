@@ -4,6 +4,7 @@ import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.module.system.api.logger.dto.OperateLogCreateReqDTO;
 import cn.iocoder.yudao.module.system.api.logger.dto.OperateLogPageReqDTO;
 import cn.iocoder.yudao.module.system.api.logger.dto.OperateLogRespDTO;
+import org.springframework.scheduling.annotation.Async;
 
 import javax.validation.Valid;
 
@@ -22,11 +23,21 @@ public interface OperateLogApi {
     void createOperateLog(@Valid OperateLogCreateReqDTO createReqDTO);
 
     /**
+     * 【异步】创建操作日志
+     *
+     * @param createReqDTO 请求
+     */
+    @Async
+    default void createOperateLogAsync(OperateLogCreateReqDTO createReqDTO) {
+        createOperateLog(createReqDTO);
+    }
+
+    /**
      * 获取指定模块的指定数据的操作日志分页
      *
-     * @param pageReqVO 请求
+     * @param pageReqDTO 请求
      * @return 操作日志分页
      */
-    PageResult<OperateLogRespDTO> getOperateLogPage(OperateLogPageReqDTO pageReqVO);
+    PageResult<OperateLogRespDTO> getOperateLogPage(OperateLogPageReqDTO pageReqDTO);
 
 }
